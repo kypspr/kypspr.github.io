@@ -32,3 +32,26 @@ curl -X POST [https://app.kypspr.ai/api/ingest](https://app.kypspr.ai/api/ingest
       }
     }
   }'
+  ```
+## 4. Step 2: Observe the L2 Refinery
+- Open the Kypspr Cockpit.
+
+- Look at the L2_SEMANTIC_ENGINE (Center Pane).
+
+- You will see the log stream processing the unstructured text, identifying clinical concepts, and calculating the KFI (Kypspr Fidelity Index).
+
+## 5. Step 3: The "Golden Record" Checkout
+Once the refinery finishes, the FHIR_DATA_FABRIC (Right Pane) will update.
+
+- Toggle to the Summary view to see the human-readable "Golden Record."
+
+- Click [ EHR_PREVIEW ] to launch the Sidecar Simulator.
+
+- Click [ COMMIT TO CHART ] to simulate the final write-back to the EHR Bank.
+
+## 6. Next Steps
+- Review the Inbound Spec for advanced data mapping.
+
+- Learn how to embed the SMART on FHIR Sidecar in your own EHR.
+
+- Join the conversation in our GitHub Discussions.
