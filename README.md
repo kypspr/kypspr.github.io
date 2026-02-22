@@ -1,6 +1,6 @@
 # KYPSPR // VISIT_NAVIGATOR
 
-## Bridging the Semantic Gap between Legacy Health Systems and Modern Intelligence via High-Fidelity FHIR R4.
+## Bridging the Semantic Gap between Health Systems and Modern Intelligence via High-Fidelity FHIR R4.
 
 Key Sections:
 
