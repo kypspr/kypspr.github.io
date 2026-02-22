@@ -143,3 +143,43 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# === Python Additions ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv
+venv
+ENV
+env.bak
+venv.bak
+
+# === Docusaurus & Build Additions ===
+.docusaurus/
+.cache-loader/
+build/
+dist/
+out/
+.next/
