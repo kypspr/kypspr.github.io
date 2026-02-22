@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Kypspr Golden Record (Outbound)",
+  "description": "The standardized FHIR R4 Golden Record produced by the L2 Refinery for EHR ingestion.",
+  "type": "object",
+  "required": ["kfi_attestation", "fhir_bundle"],
+  "properties": {
+    "kfi_attestation": {
+      "type": "object",
+      "required": ["score", "version", "verified_by"],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "The Kypspr Fidelity Index score for this record."
+        },
+        "version": { "type": "string", "description": "L2 Refinery Engine version." },
+        "verified_by": { "type": "string", "description": "The NPI or Email of the clinician who performed the HITL validation." },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "fhir_bundle": {
+      "type": "object",
+      "description": "The standard FHIR R4 Bundle (Type: Transaction) to be ingested by the EHR API.",
+      "required": ["resourceType", "type", "entry"],
+      "properties": {
+        "resourceType": { "const": "Bundle" },
+        "type": { "const": "transaction" },
+        "entry": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fullUrl": { "type": "string" },
+              "resource": { "type": "object" },
+              "request": {
+                "type": "object",
+                "properties": {
+                  "method": { "enum": ["POST", "PUT"] },
+                  "url": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Mapping of Golden concepts back to original L0 source packets for auditability."
+      }
+    }
+  }
+}
