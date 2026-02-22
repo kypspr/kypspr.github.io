@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Kypspr Inbound Refinery Payload",
+  "description": "The standardized contract for L0 Forwarders to push clinical data into the Kypspr L2 Refinery.",
+  "type": "object",
+  "required": ["metadata", "payload"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["source_system", "transaction_id", "timestamp"],
+      "properties": {
+        "source_system": {
+          "type": "string",
+          "description": "The L0 Integrator name (e.g., REDOX, METRIPORT, RHAPSODY)."
+        },
+        "transaction_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique ID for tracking the packet through the refinery."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fidelity_target": {
+          "type": "string",
+          "enum": ["GOLDEN_RECORD", "DELTA_ONLY", "REVENUE_CAPTURE"],
+          "default": "GOLDEN_RECORD"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "required": ["patient_context", "data_type", "content"],
+      "properties": {
+        "patient_context": {
+          "type": "object",
+          "properties": {
+            "mrn": { "type": "string" },
+            "ehr_id": { "type": "string" }
+          }
+        },
+        "data_type": {
+          "type": "string",
+          "enum": ["FHIR_R4_BUNDLE", "HL7_V2_JSON", "UNSTRUCTURED_NOTE", "IOT_TELEMETRY"]
+        },
+        "content": {
+          "type": "object",
+          "description": "The actual clinical data to be refined."
+        }
+      }
+    }
+  }
+}
